@@ -5,9 +5,7 @@ var AnswerChoice = React.createClass({
   handleClick: function (e) {
     var choice = e.currentTarget.id;
     if (choice == this.props.correctAnswer) {
-      alert("CORRECT");
-    } else {
-      alert("INCORRECT");
+      this.props.correct();
     }
     this.props.newCard();
   },

@@ -4,10 +4,16 @@ var FrenchRev = require('./data/44.json');
 var USHistory = require('./data/46.json');
 var Colonialism = require('./data/47.json');
 
-var GameLogic = function () {
-  this.packs = shuffle([Spanish, Psych, FrenchRev, USHistory, Colonialism]);
-  this.cards = this.packs[0]['gameData'];
-  this.category = this.packs[0]['category'];
+CATEGORY_MAPPING = {'spanish': Spanish,
+                    'psych': Psych,
+                    'ushistory': USHistory,
+                    'frenchrev': FrenchRev,
+                    'colonialism': Colonialism}
+
+var GameLogic = function (category) {
+  var pack = CATEGORY_MAPPING[category];
+  this.cards = pack['gameData'];
+  this.category = pack['category'];
   this.currentCard = null;
   this.answerChoices = [];
   this.correctAnswer = null;

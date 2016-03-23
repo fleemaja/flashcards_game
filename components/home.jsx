@@ -10,11 +10,11 @@ var Home = React.createClass({
     return(
       <div>
         <ul>
-          <li><Link to="game">Spanish</Link></li>
-          <li><Link to="game">Psych</Link></li>
-          <li><Link to="game">US History</Link></li>
-          <li><Link to="game">French Revolution</Link></li>
-          <li><Link to="game">Colonialism</Link></li>
+          <li><Link to="game/spanish">Spanish</Link></li>
+          <li><Link to="game/psych">Psych</Link></li>
+          <li><Link to="game/ushistory">US History</Link></li>
+          <li><Link to="game/frenchrev">French Revolution</Link></li>
+          <li><Link to="game/colonialism">Colonialism</Link></li>
         </ul>
       </div>
     );

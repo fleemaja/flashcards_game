@@ -4,14 +4,16 @@ var AnswerChoice = require('./answer_choice');
 
 var Game = React.createClass({
   getInitialState: function () {
-    var game = new GameLogic();
+    var category = this.props.params.category;
+    var game = new GameLogic(category);
     return({ timeLeft: 60, card: game.currentCard,
       count: 0, answerChoices: game.answerChoices, game: game});
   },
 
   startNewGame: function () {
     clearInterval(this.intervalId);
-    var game = new GameLogic();
+    var category = this.props.params.category;
+    var game = new GameLogic(category);
     this.setState({ timeLeft: 60, count: 0, game: game })
     this.newCard();
     this.intervalId = setInterval(this.tick, 1000);

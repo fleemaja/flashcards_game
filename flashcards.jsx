@@ -13,7 +13,7 @@ var Home = require('./components/home.jsx');
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path="game" component={Game} />
+    <Route path="game/:category" component={Game} />
   </Route>
 
 );

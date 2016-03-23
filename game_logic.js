@@ -1,8 +1,13 @@
 var Spanish = require('./data/42.json');
-
+var Psych = require('./data/43.json');
+var FrenchRev = require('./data/44.json');
+var USHistory = require('./data/46.json');
+var Colonialism = require('./data/47.json');
 
 var GameLogic = function () {
-  this.cards = Spanish['gameData'];
+  this.packs = shuffle([Spanish, Psych, FrenchRev, USHistory, Colonialism]);
+  this.cards = this.packs[0]['gameData'];
+  this.category = this.packs[0]['category'];
   this.currentCard = null;
   this.answerChoices = [];
   this.correctAnswer = null;

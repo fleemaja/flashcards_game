@@ -1,6 +1,10 @@
 var React = require('react');
 var GameLogic = require('../game_logic');
 var AnswerChoice = require('./answer_choice');
+var Router = require('react-router').Router;
+var Route = require('react-router').Route;
+var IndexRoute = require('react-router').IndexRoute;
+var Link = require('react-router').Link;
 
 var Game = React.createClass({
   getInitialState: function () {
@@ -24,7 +28,6 @@ var Game = React.createClass({
         timeLeft: this.state.timeLeft - 1,
       });
     } else {
-      alert("Time's Up!");
       clearInterval(this.intervalId);
     }
   },
@@ -39,21 +42,35 @@ var Game = React.createClass({
     this.setState({ count: this.state.count + 1 });
   },
 
-  render: function () {
+  playAgain: function() {
+    this.replaceState(this.getInitialState());
+    this.intervalId = setInterval(this.tick, 1000);
+  },
+
+  interface: function() {
     var correct = this.state.card['term'];
-    var category = this.state.game.category;
     var that = this;
+    if (this.state.timeLeft !== 0) {
+      return (<div><h2>{ this.state.card['definition'] } </h2>
+      <ul>
+        { this.state.answerChoices.map(function(choice) {
+          return (<AnswerChoice choice={choice} correctAnswer={correct}
+            newCard={that.newCard} correct={that.correct} /> )
+        }) }
+      </ul></div>)
+    } else {
+      return (<div><h4>{ "Time is up!" }</h4>
+      <button onClick={this.playAgain}>Play Again?</button></div>)
+    }
+  },
+
+  render: function () {
+    var category = this.state.game.category;
     return (
       <div>
-        <h1>Time Left: { this.state.timeLeft } </h1>
         <h1>Category: { category } </h1>
-        <h2>{ this.state.card['definition'] } </h2>
-        <ul>
-          { this.state.answerChoices.map(function(choice) {
-            return (<AnswerChoice choice={choice} correctAnswer={correct}
-              newCard={that.newCard} correct={that.correct} /> )
-          }) }
-        </ul>
+        <h1>Time Left: { this.state.timeLeft } </h1>
+        { this.interface() }
         <h2>Correct: { this.state.count }</h2>
       </div>
     )

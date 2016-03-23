@@ -9,11 +9,13 @@ var Link = require('react-router').Link;
 
 var App = require('./components/app.jsx');
 var Home = require('./components/home.jsx');
+var GameShow = require('./components/game_show');
 
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path="game/:category" component={Game} />
+    <Route path="game/:category" component={GameShow}/>
+    <Route path="game/:category/play" component={Game}/>
   </Route>
 
 );

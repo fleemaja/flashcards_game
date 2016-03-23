@@ -10,8 +10,7 @@ var Game = React.createClass({
       count: 0, answerChoices: game.answerChoices, game: game});
   },
 
-  startNewGame: function () {
-    clearInterval(this.intervalId);
+  componentDidMount: function () {
     var category = this.props.params.category;
     var game = new GameLogic(category);
     this.setState({ timeLeft: 60, count: 0, game: game })
@@ -46,7 +45,6 @@ var Game = React.createClass({
     var that = this;
     return (
       <div>
-        <button onClick={this.startNewGame}>Play</button>
         <h1>Time Left: { this.state.timeLeft } </h1>
         <h1>Category: { category } </h1>
         <h2>{ this.state.card['definition'] } </h2>

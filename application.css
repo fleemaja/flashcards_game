@@ -170,3 +170,8 @@ button:hover {
 .incorrect-choice {
   background-color: red;
 }
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

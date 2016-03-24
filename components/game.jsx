@@ -18,6 +18,7 @@ var Game = React.createClass({
   componentDidMount: function () {
     var category = this.props.params.category;
     var game = new GameLogic(category);
+    document.getElementById("continue-button").disabled = true;
     this.setState({ timeLeft: 60, count: 0, game: game })
     this.newCard();
     this.intervalId = setInterval(this.tick, 1000);
@@ -39,11 +40,12 @@ var Game = React.createClass({
     this.setState({card: game.currentCard, answerChoices: game.answerChoices});
   },
 
-  correct: function(choice) {
+  correct: function() {
     this.setState({ count: this.state.count + 1 });
   },
 
   handleInput: function(choice) {
+    document.getElementById("continue-button").disabled = false;
     var correct = this.state.card['term'];
     if (choice === this.state.card['term']) {
       document.getElementById(choice).classList.toggle('correct-choice');
@@ -58,6 +60,7 @@ var Game = React.createClass({
     var latest = this.state.latestChoice;
     var correct = this.state.card['term'];
     var that = this;
+    document.getElementById("continue-button").disabled = true;
     if (latest !== correct) {
       document.getElementById(latest).classList.toggle('incorrect-choice');
     }
@@ -101,7 +104,9 @@ var Game = React.createClass({
                 handleInput={that.handleInput} /> )
             }) }
           </div>
-          <button onClick={this.continue}>Continue</button>
+          <button id="continue-button" onClick={this.continue}>
+            Continue
+          </button>
         </div>
       )
     } else {

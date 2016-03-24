@@ -18,9 +18,11 @@ var AnswerChoice = React.createClass({
   render: function () {
 
     return (
-      <li onClick={this.handleClick} id={this.props.choice}>
-        { this.props.choice }
-      </li>
+      <div className="answer" onClick={this.handleClick} id={this.props.choice}>
+        <div className="choice-text">
+          { this.props.choice }
+        </div>
+      </div>
     )
   }
 });

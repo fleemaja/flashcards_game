@@ -8,7 +8,7 @@
  }
 
  div#main {
-   max-width: 800px;
+   max-width: 900px;
    text-align: center;
    margin: 0 auto;
  }
@@ -48,12 +48,27 @@ button:hover {
 }
 
 .pack {
-  padding: 20px;
+  padding: 20px 40px 20px 40px;
 }
 
 .pack-logo {
   border-radius: 50%;
   max-height: 170px;
+}
+
+.pack-logo-small {
+  border-radius: 50%;
+  max-height: 100px;
+}
+
+.pack-logo-very-small {
+  border-radius: 50%;
+  margin: 10px 10px 0 0;
+  max-height: 42px;
+}
+
+.timer {
+  padding-left: 20px;
 }
 
 /* entire container, keeps perspective */
@@ -67,10 +82,23 @@ button:hover {
 }
 
 .flip-container, .front, .back {
-  width: 800px;
-  height: 50px;
+  width: 500px;
+  height: 205px;
   border-radius: 25px;
   text-align: center;
+  border: 1px solid #D3D3D3;
+  box-shadow: 10px 10px 5px #888888;
+  margin-bottom: 20px;
+}
+
+.front-text, .back-text {
+  text-align: center;
+  width: 80%;
+  padding: 60px 10% 10px 10%;
+}
+
+.back-text {
+  padding: 40px 10% 20px 10%;
 }
 
 /* flip speed goes here */
@@ -95,11 +123,32 @@ button:hover {
 	z-index: 2;
 	/* for firefox 31 */
 	transform: rotateY(0deg);
-  background-color: #a5a5a5;
 }
 
 /* back, initially hidden pane */
 .back {
 	transform: rotateY(180deg);
-  background-color: yellow;
+  /*background-color: #D3D3D3;*/
+}
+
+.answer-choices {
+  padding-left: 50px;
+  width: 300px;
+}
+
+.answer {
+  border-radius: 25px;
+  height: 50px;
+  margin-bottom: 5px;
+  border: 1px solid #D3D3D3;
+  box-shadow: 2px 2px 1px #888888;
+}
+
+.answer-text {
+  font-size: 28px;
+  color: green;
+}
+
+.choice-text {
+  padding-top: 15px;
 }

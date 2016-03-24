@@ -12,7 +12,7 @@ var Home = React.createClass({
         <h1>Choose a Subject to Begin</h1>
         <div className="container">
           <div className="pack">
-            <Link to="game/spanish"><img src="./images/spanish.png" className="pack-logo"/>
+            <Link to="game/spanish"><img src="./images/spanish.jpg" className="pack-logo"/>
                  <br/>Spanish</Link>
           </div>
           <div className="pack">
@@ -28,7 +28,7 @@ var Home = React.createClass({
                  <br/>Colonialism</Link>
           </div>
           <div className="pack">
-            <Link to="game/frenchrev"><img src="./images/french_rev.jpg" className="pack-logo"/>
+            <Link to="game/frenchrev"><img src="./images/frenchrev.jpg" className="pack-logo"/>
                  <br/>The French Revolution</Link>
           </div>
         </div>

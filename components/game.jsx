@@ -52,23 +52,30 @@ var Game = React.createClass({
     var that = this;
     if (this.state.timeLeft !== 0) {
       return (
-        <div>
+        <div className="container">
           <div className="flip-container" id="myCard">
             <div className="flipper">
               <div className="front">
-                { this.state.card['definition'] }
+                <div className="front-text">
+                  { this.state.card['definition'] }
+                </div>
               </div>
               <div className="back">
-                { correct }
+                <div className="back-text">
+                  { this.state.card['definition'] }
+                </div>
+                <span className="answer-text">
+                  Answer: { correct }
+                </span>
               </div>
             </div>
           </div>
-          <ul>
+          <div className="answer-choices">
             { this.state.answerChoices.map(function(choice) {
               return (<AnswerChoice choice={choice} correctAnswer={correct}
                 newCard={that.newCard} correct={that.correct} /> )
             }) }
-          </ul>
+          </div>
         </div>
       )
     } else {
@@ -82,11 +89,14 @@ var Game = React.createClass({
     var category = pack['category'];
     var datasetName = pack['datasetName'];
     var link = "/game/" + this.props.params.category;
+    var imgSrc = "./images/" + this.props.params.category + ".jpg"
     return (
       <div>
-        <h1>{ category } </h1>
-        <h2>{ datasetName }</h2>
-        <h1>Time Left: { this.state.timeLeft } </h1>
+        <h1><img src={imgSrc} className="pack-logo-very-small"/>
+          { category }: { datasetName }
+        </h1>
+        <h1>Time Left: { this.state.timeLeft }
+        </h1>
         { this.interface() }
         <h2>Correct: { this.state.count }</h2>
         <button><Link to={link}>&lt; Back</Link></button>

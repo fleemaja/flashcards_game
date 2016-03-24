@@ -50,7 +50,6 @@ var Game = React.createClass({
   interface: function() {
     var correct = this.state.card['term'];
     var that = this;
-    var link = "/game/" + this.props.params.category;
     if (this.state.timeLeft !== 0) {
       return (<div><h2>{ this.state.card['definition'] } </h2>
       <ul>
@@ -61,19 +60,23 @@ var Game = React.createClass({
       </ul></div>)
     } else {
       return (<div><h4>{ "Time is up!" }</h4>
-      <button onClick={this.playAgain}>Play Again?</button>
-      <Link to={link}>Back</Link></div>)
+      <button onClick={this.playAgain}>Play Again?</button></div>)
     }
   },
 
   render: function () {
-    var category = this.state.game.category;
+    var pack = this.state.game.pack;
+    var category = pack['category'];
+    var datasetName = pack['datasetName'];
+    var link = "/game/" + this.props.params.category;
     return (
       <div>
-        <h1>Category: { category } </h1>
+        <h1>{ category } </h1>
+        <h2>{ datasetName }</h2>
         <h1>Time Left: { this.state.timeLeft } </h1>
         { this.interface() }
         <h2>Correct: { this.state.count }</h2>
+        <button><Link to={link}>&lt; Back</Link></button>
       </div>
     )
   }

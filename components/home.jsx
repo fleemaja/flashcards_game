@@ -29,7 +29,7 @@ var Home = React.createClass({
           </div>
           <div className="pack">
             <Link to="game/frenchrev"><img src="./images/french_rev.jpg" className="pack-logo"/>
-                 <br/>French Revolution</Link>
+                 <br/>The French Revolution</Link>
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ CATEGORY_MAPPING = {'spanish': Spanish,
 
 var GameLogic = function (category) {
   var pack = CATEGORY_MAPPING[category];
+  this.pack = pack;
   this.cards = pack['gameData'];
   this.category = pack['category'];
   this.currentCard = null;

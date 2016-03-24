@@ -12,7 +12,7 @@ var Game = React.createClass({
     var game = new GameLogic(category);
     return({ timeLeft: 60, card: game.currentCard,
       count: 0, answerChoices: game.answerChoices, game: game,
-      latestChoice: ""});
+      latestChoice: "", answersClickable: true});
   },
 
   componentDidMount: function () {
@@ -46,6 +46,11 @@ var Game = React.createClass({
 
   handleInput: function(choice) {
     document.getElementById("continue-button").disabled = false;
+    var answers = document.querySelectorAll('.answer'), i;
+    for (i = 0; i < answers.length; ++i) {
+      answers[i].classList.toggle('no-click');;
+    }
+    this.setState({ answersClickable: false });
     var correct = this.state.card['term'];
     if (choice === this.state.card['term']) {
       document.getElementById(choice).classList.toggle('correct-choice');
@@ -61,12 +66,17 @@ var Game = React.createClass({
     var correct = this.state.card['term'];
     var that = this;
     document.getElementById("continue-button").disabled = true;
+    var answers = document.querySelectorAll('.answer'), i;
+    for (i = 0; i < answers.length; ++i) {
+      answers[i].classList.toggle('no-click');;
+    }
     if (latest !== correct) {
       document.getElementById(latest).classList.toggle('incorrect-choice');
     }
     document.getElementById(correct).classList.toggle('correct-choice');
     document.querySelector("#myCard").classList.toggle("flip");
     setTimeout(function() { that.newCard(); }, 200);
+    this.setState({ answersClickable: true });
   },
 
   playAgain: function() {
@@ -101,7 +111,8 @@ var Game = React.createClass({
             { this.state.answerChoices.map(function(choice) {
               return (<AnswerChoice choice={choice} correctAnswer={correct}
                 newCard={that.newCard} correct={that.correct}
-                handleInput={that.handleInput} /> )
+                handleInput={that.handleInput}
+                clickable={that.state.answersClickable} /> )
             }) }
           </div>
           <button id="continue-button" onClick={this.continue}>

@@ -9,13 +9,29 @@ var Home = React.createClass({
   render: function () {
     return(
       <div>
-        <ul>
-          <li><Link to="game/spanish">Spanish</Link></li>
-          <li><Link to="game/psych">Psych</Link></li>
-          <li><Link to="game/ushistory">US History</Link></li>
-          <li><Link to="game/frenchrev">French Revolution</Link></li>
-          <li><Link to="game/colonialism">Colonialism</Link></li>
-        </ul>
+        <h1>Choose a Subject to Begin</h1>
+        <div className="container">
+          <div className="pack">
+            <Link to="game/spanish"><img src="./images/spanish.png" className="pack-logo"/>
+                 <br/>Spanish</Link>
+          </div>
+          <div className="pack">
+            <Link to="game/psych"><img src="./images/psych.jpg" className="pack-logo"/>
+                 <br/>Psychology</Link>
+          </div>
+          <div className="pack">
+            <Link to="game/ushistory"><img src="./images/ushistory.jpg" className="pack-logo"/>
+                 <br/>US History</Link>
+          </div>
+          <div className="pack">
+            <Link to="game/colonialism"><img src="./images/colonialism.jpg" className="pack-logo"/>
+                 <br/>Colonialism</Link>
+          </div>
+          <div className="pack">
+            <Link to="game/frenchrev"><img src="./images/french_rev.jpg" className="pack-logo"/>
+                 <br/>French Revolution</Link>
+          </div>
+        </div>
       </div>
     );
   }

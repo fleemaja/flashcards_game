@@ -7,7 +7,12 @@ var AnswerChoice = React.createClass({
     if (choice == this.props.correctAnswer) {
       this.props.correct();
     }
-    this.props.newCard();
+    document.querySelector("#myCard").classList.toggle("flip");
+    var that = this;
+    setTimeout(function() {
+      document.querySelector("#myCard").classList.toggle("flip");
+      that.props.newCard();
+    }, 2000);
   },
 
   render: function () {

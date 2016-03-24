@@ -51,13 +51,26 @@ var Game = React.createClass({
     var correct = this.state.card['term'];
     var that = this;
     if (this.state.timeLeft !== 0) {
-      return (<div><h2>{ this.state.card['definition'] } </h2>
-      <ul>
-        { this.state.answerChoices.map(function(choice) {
-          return (<AnswerChoice choice={choice} correctAnswer={correct}
-            newCard={that.newCard} correct={that.correct} /> )
-        }) }
-      </ul></div>)
+      return (
+        <div>
+          <div className="flip-container" id="myCard">
+            <div className="flipper">
+              <div className="front">
+                { this.state.card['definition'] }
+              </div>
+              <div className="back">
+                { correct }
+              </div>
+            </div>
+          </div>
+          <ul>
+            { this.state.answerChoices.map(function(choice) {
+              return (<AnswerChoice choice={choice} correctAnswer={correct}
+                newCard={that.newCard} correct={that.correct} /> )
+            }) }
+          </ul>
+        </div>
+      )
     } else {
       return (<div><h4>{ "Time is up!" }</h4>
       <button onClick={this.playAgain}>Play Again?</button></div>)

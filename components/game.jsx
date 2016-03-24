@@ -11,7 +11,8 @@ var Game = React.createClass({
     var category = this.props.params.category;
     var game = new GameLogic(category);
     return({ timeLeft: 60, card: game.currentCard,
-      count: 0, answerChoices: game.answerChoices, game: game});
+      count: 0, answerChoices: game.answerChoices, game: game,
+      latestChoice: ""});
   },
 
   componentDidMount: function () {
@@ -38,8 +39,31 @@ var Game = React.createClass({
     this.setState({card: game.currentCard, answerChoices: game.answerChoices});
   },
 
-  correct: function() {
+  correct: function(choice) {
     this.setState({ count: this.state.count + 1 });
+  },
+
+  handleInput: function(choice) {
+    var correct = this.state.card['term'];
+    if (choice === this.state.card['term']) {
+      document.getElementById(choice).classList.toggle('correct-choice');
+    } else {
+      document.getElementById(choice).classList.toggle('incorrect-choice');
+      document.getElementById(correct).classList.toggle('correct-choice');
+    }
+    this.setState({ latestChoice: choice })
+  },
+
+  continue: function() {
+    var latest = this.state.latestChoice;
+    var correct = this.state.card['term'];
+    var that = this;
+    if (latest !== correct) {
+      document.getElementById(latest).classList.toggle('incorrect-choice');
+    }
+    document.getElementById(correct).classList.toggle('correct-choice');
+    document.querySelector("#myCard").classList.toggle("flip");
+    setTimeout(function() { that.newCard(); }, 200);
   },
 
   playAgain: function() {
@@ -73,9 +97,11 @@ var Game = React.createClass({
           <div className="answer-choices">
             { this.state.answerChoices.map(function(choice) {
               return (<AnswerChoice choice={choice} correctAnswer={correct}
-                newCard={that.newCard} correct={that.correct} /> )
+                newCard={that.newCard} correct={that.correct}
+                handleInput={that.handleInput} /> )
             }) }
           </div>
+          <button onClick={this.continue}>Continue</button>
         </div>
       )
     } else {
@@ -98,7 +124,7 @@ var Game = React.createClass({
         <h1>Time Left: { this.state.timeLeft }
         </h1>
         { this.interface() }
-        <h2>Correct: { this.state.count }</h2>
+        <h1>Correct: { this.state.count }</h1>
         <button><Link to={link}>&lt; Back</Link></button>
       </div>
     )

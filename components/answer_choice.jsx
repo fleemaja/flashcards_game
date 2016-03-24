@@ -5,14 +5,10 @@ var AnswerChoice = React.createClass({
   handleClick: function (e) {
     var choice = e.currentTarget.id;
     if (choice == this.props.correctAnswer) {
-      this.props.correct();
+      this.props.correct(e.currentTarget.id);
     }
     document.querySelector("#myCard").classList.toggle("flip");
-    var that = this;
-    setTimeout(function() {
-      document.querySelector("#myCard").classList.toggle("flip");
-      that.props.newCard();
-    }, 2000);
+    this.props.handleInput(e.currentTarget.id);
   },
 
   render: function () {

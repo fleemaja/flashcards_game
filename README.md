@@ -1,5 +1,5 @@
 # Flashcards Game
-[Live Link](http://fleemaja.github.io/flashcards.html)
+# [Live Link](http://fleemaja.github.io/flashcards.html)
 
 ## How to Play:
 Select a category from the main menu. Click 'Play' on the resulting screen
@@ -10,5 +10,4 @@ To make an answer choice, click one of the four choices on the right side of the
 You will then be given feedback (including sounds if your audio is turned on).
 Click 'Continue' to proceed to the next card.
 
-# Gameplay Screenshot
 ![Screenshot](images/gameplay.png)

@@ -25,6 +25,9 @@ var Game = React.createClass({
   },
 
   tick: function () {
+    if (this.state.timeLeft === 60) {
+      document.getElementById("continue-button").disabled = true;
+    }
     if (this.state.timeLeft > 0) {
       this.setState({
         timeLeft: this.state.timeLeft - 1,
@@ -53,8 +56,12 @@ var Game = React.createClass({
     this.setState({ answersClickable: false });
     var correct = this.state.card['term'];
     if (choice === this.state.card['term']) {
+      var audio = new Audio('./sounds/correct.wav');
+      audio.play();
       document.getElementById(choice).classList.toggle('correct-choice');
     } else {
+      var audio = new Audio('./sounds/wrong.wav');
+      audio.play();
       document.getElementById(choice).classList.toggle('incorrect-choice');
       document.getElementById(correct).classList.toggle('correct-choice');
     }
@@ -87,6 +94,7 @@ var Game = React.createClass({
   interface: function() {
     var correct = this.state.card['term'];
     var that = this;
+    var link = "/game/" + this.props.params.category;
     if (this.state.timeLeft !== 0) {
       return (
         <div className="container">
@@ -112,17 +120,28 @@ var Game = React.createClass({
               return (<AnswerChoice choice={choice} correctAnswer={correct}
                 newCard={that.newCard} correct={that.correct}
                 handleInput={that.handleInput}
-                clickable={that.state.answersClickable} /> )
+                clickable={that.state.answersClickable}/> )
             }) }
           </div>
-          <button id="continue-button" onClick={this.continue}>
-            Continue
-          </button>
+          <div className="container">
+            <button className="inline-elements">
+              <Link to={link}>&lt; Back</Link>
+            </button>
+            <h1 id="count" className="inline-elements">Correct: { this.state.count }</h1>
+            <button className="inline-elements"
+                    id="continue-button" onClick={this.continue}>
+              Continue
+            </button>
+          </div>
         </div>
       )
     } else {
       return (<div><h4>{ "Time is up!" }</h4>
-      <button onClick={this.playAgain}>Play Again?</button></div>)
+      <button onClick={this.playAgain}>Play Again?</button>
+      <h1>Correct: { this.state.count }</h1>
+      <button>
+        <Link to={link}>&lt; Back</Link>
+      </button></div>)
     }
   },
 
@@ -130,7 +149,6 @@ var Game = React.createClass({
     var pack = this.state.game.pack;
     var category = pack['category'];
     var datasetName = pack['datasetName'];
-    var link = "/game/" + this.props.params.category;
     var imgSrc = "./images/" + this.props.params.category + ".jpg"
     return (
       <div>
@@ -140,8 +158,6 @@ var Game = React.createClass({
         <h1>Time Left: { this.state.timeLeft }
         </h1>
         { this.interface() }
-        <h1>Correct: { this.state.count }</h1>
-        <button><Link to={link}>&lt; Back</Link></button>
       </div>
     )
   }

@@ -14,6 +14,7 @@
    margin: 0 auto;
    border-radius: 25px;
    background-color: white;
+   padding: 0 50px 50px 50px;
  }
 
 .navbar {
@@ -164,11 +165,11 @@ button:hover {
 }
 
 .correct-choice {
-  background-color: green;
+  background-color: #B4EEB4;
 }
 
 .incorrect-choice {
-  background-color: red;
+  background-color: #FF9999;
 }
 
 button:disabled {
@@ -178,4 +179,13 @@ button:disabled {
 
 .no-click {
   cursor: not-allowed;
+}
+
+.inline-elements {
+  margin-top: 40px;
+  display: inline;
+}
+
+#count {
+  padding: 10px 120px 0 120px;
 }

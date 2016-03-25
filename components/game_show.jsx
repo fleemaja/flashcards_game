@@ -22,7 +22,7 @@ var GameShow = React.createClass({
         <img src={imgSrc} className="pack-logo-small"/>
         <h1>{ displayCategory }</h1>
         <h2>{ datasetName }</h2>
-        <h3>{ "How many correct answers can you get in 60 seconds? \
+        <h3 className="click-play">{ "How many correct answers can you get in 60 seconds? \
           Click Play to find out!" }</h3>
         <Link to={link}><button>Play</button></Link>
 

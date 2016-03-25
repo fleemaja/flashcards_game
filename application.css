@@ -189,3 +189,23 @@ button:disabled {
 #count {
   padding: 10px 120px 0 120px;
 }
+
+.choose {
+  padding-top: 20px;
+}
+
+.results {
+  font-size: 48px;
+}
+
+.time-up, .time-left {
+  color: #1caff6;
+}
+
+.time-up {
+  font-size: 42px;
+}
+
+.click-play {
+  font-size: 32px;
+}

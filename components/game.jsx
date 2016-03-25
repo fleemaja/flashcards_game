@@ -97,51 +97,61 @@ var Game = React.createClass({
     var link = "/game/" + this.props.params.category;
     if (this.state.timeLeft !== 0) {
       return (
-        <div className="container">
-          <div className="flip-container" id="myCard">
-            <div className="flipper">
-              <div className="front">
-                <div className="front-text">
-                  { this.state.card['definition'] }
+        <div>
+        <h1 className="time-left">Time Left: { this.state.timeLeft }</h1>
+          <div className="container">
+            <div className="flip-container" id="myCard">
+              <div className="flipper">
+                <div className="front">
+                  <div className="front-text">
+                    { this.state.card['definition'] }
+                  </div>
                 </div>
-              </div>
-              <div className="back">
-                <div className="back-text">
-                  { this.state.card['definition'] }
+                <div className="back">
+                  <div className="back-text">
+                    { this.state.card['definition'] }
+                  </div>
+                  <span className="answer-text">
+                    Answer: { correct }
+                  </span>
                 </div>
-                <span className="answer-text">
-                  Answer: { correct }
-                </span>
               </div>
             </div>
-          </div>
-          <div className="answer-choices">
-            { this.state.answerChoices.map(function(choice) {
-              return (<AnswerChoice choice={choice} correctAnswer={correct}
-                newCard={that.newCard} correct={that.correct}
-                handleInput={that.handleInput}
-                clickable={that.state.answersClickable}/> )
-            }) }
-          </div>
-          <div className="container">
-            <button className="inline-elements">
-              <Link to={link}>&lt; Back</Link>
-            </button>
-            <h1 id="count" className="inline-elements">Correct: { this.state.count }</h1>
-            <button className="inline-elements"
-                    id="continue-button" onClick={this.continue}>
-              Continue
-            </button>
+            <div className="answer-choices">
+              { this.state.answerChoices.map(function(choice) {
+                return (<AnswerChoice choice={choice} correctAnswer={correct}
+                  newCard={that.newCard} correct={that.correct}
+                  handleInput={that.handleInput}
+                  clickable={that.state.answersClickable}/> )
+              }) }
+            </div>
+            <div className="container">
+              <button className="inline-elements">
+                <Link to={link}>&lt; Back</Link>
+              </button>
+              <h1 id="count" className="inline-elements">Correct: { this.state.count }</h1>
+              <button className="inline-elements"
+                      id="continue-button" onClick={this.continue}>
+                Continue
+              </button>
+            </div>
           </div>
         </div>
       )
     } else {
-      return (<div><h4>{ "Time is up!" }</h4>
-      <button onClick={this.playAgain}>Play Again?</button>
-      <h1>Correct: { this.state.count }</h1>
-      <button>
-        <Link to={link}>&lt; Back</Link>
-      </button></div>)
+      return (
+        <div>
+          <h1 className="time-up">{ "Time's up!" }</h1>
+          <h2 className="results">You got { this.state.count } Correct</h2>
+          <button onClick={this.playAgain}>
+            Play Again?
+          </button>
+          <h3>Or</h3>
+          <button>
+            <Link to={link}>&lt; Back</Link>
+          </button>
+        </div>
+      )
     }
   },
 
@@ -154,8 +164,6 @@ var Game = React.createClass({
       <div>
         <h1><img src={imgSrc} className="pack-logo-very-small"/>
           { category }: { datasetName }
-        </h1>
-        <h1>Time Left: { this.state.timeLeft }
         </h1>
         { this.interface() }
       </div>

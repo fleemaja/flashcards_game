@@ -9,7 +9,7 @@ var Home = React.createClass({
   render: function () {
     return(
       <div>
-        <h1>Choose a Subject to Begin</h1>
+        <h1 className="choose">Choose a Subject to Begin</h1>
         <div className="container">
           <div className="pack">
             <Link to="game/spanish"><img src="./images/spanish.jpg" className="pack-logo"/>

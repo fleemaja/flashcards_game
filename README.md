@@ -1,5 +1,5 @@
 # Flashcards Game
-# [Live Link](http://fleemaja.github.io/flashcards_game/)
+[Live Link](http://fleemaja.github.io/flashcards_game/)
 
 ## How to Play:
 Select a category from the main menu. Click 'Play' on the resulting screen
